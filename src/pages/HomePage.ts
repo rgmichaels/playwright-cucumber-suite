@@ -11,4 +11,9 @@ export class HomePage {
   async clickABTesting() {
     await this.page.locator('a[href="/abtest"]').click();
   }
+
+  async clickAddRemoveElements() {
+  await this.page.locator('a[href="/add_remove_elements/"]').click();
+}
+
 }
