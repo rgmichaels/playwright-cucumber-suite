@@ -17,3 +17,8 @@ Feature: A/B Testing page
     Then I should see a Delete button
     When I delete the element
     Then I should not see a Delete button
+
+@smoke @auth
+  Scenario: User logs in using Basic Auth
+  Given I navigate to the Basic Auth page with valid credentials
+  Then I should see the Basic Auth success message

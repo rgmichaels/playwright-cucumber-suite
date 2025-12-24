@@ -5,6 +5,7 @@ import { CustomWorld } from '../support/world';
 import { HomePage } from '../pages/HomePage';
 import { ABTestingPage } from '../pages/ABTestingPage';
 import { AddRemoveElementsPage } from '../pages/AddRemoveElementsPage';
+import { BasicAuthPage } from '../pages/BasicAuthPage';
 
 Given('I am on the home page', async function (this: CustomWorld) {
   const home = new HomePage(this.page);
@@ -55,4 +56,15 @@ When(/^I delete the element$/, async function () {
 Then(/^I should not see a Delete button$/, async function () {
   const page = new AddRemoveElementsPage(this.page);
   expect(await page.isDeleteButtonVisible()).toBeFalsy();
+});
+
+Given(/^I navigate to the Basic Auth page with valid credentials$/, async function () {
+  const authPage = new BasicAuthPage(this.browser);
+  this.page = await authPage.openWithCredentials();
+});
+
+Then(/^I should see the Basic Auth success message$/, async function () {
+  await expect(this.page.locator('p')).toHaveText(
+    'Congratulations! You must have the proper credentials.'
+  );
 });
