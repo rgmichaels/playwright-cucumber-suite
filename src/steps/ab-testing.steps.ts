@@ -6,6 +6,7 @@ import { HomePage } from '../pages/HomePage';
 import { ABTestingPage } from '../pages/ABTestingPage';
 import { AddRemoveElementsPage } from '../pages/AddRemoveElementsPage';
 import { BasicAuthPage } from '../pages/BasicAuthPage';
+import { BrokenImagesPage } from '../pages/BrokenImagesPage';
 
 Given('I am on the home page', async function (this: CustomWorld) {
   const home = new HomePage(this.page);
@@ -68,3 +69,26 @@ Then(/^I should see the Basic Auth success message$/, async function () {
     'Congratulations! You must have the proper credentials.'
   );
 });
+
+When(/^I click the Broken Images link$/, async function () {
+  const home = new HomePage(this.page);
+  await home.clickBrokenImages();
+});
+
+Then(/^I should detect broken images$/, async function () {
+  const brokenImagesPage = new BrokenImagesPage(this.page);
+
+  const { broken, ok } = await brokenImagesPage.findBrokenImages();
+
+  // Helpful output for debugging / demo purposes
+  console.log(`Images OK: ${ok.length}`);
+  console.log(`Images broken: ${broken.length}`);
+  if (broken.length) {
+    console.log("Broken image URLs:");
+    broken.forEach((u) => console.log(` - ${u}`));
+  }
+
+  // Since this page is designed to have broken images, assert at least 1
+  expect(broken.length).toBeGreaterThan(0);
+});
+

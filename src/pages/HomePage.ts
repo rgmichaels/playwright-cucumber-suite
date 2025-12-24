@@ -16,4 +16,8 @@ export class HomePage {
   await this.page.locator('a[href="/add_remove_elements/"]').click();
 }
 
+async clickBrokenImages() {
+  await this.page.locator('a[href="/broken_images"]').click();
+}
+
 }
