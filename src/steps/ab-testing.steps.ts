@@ -7,12 +7,12 @@ import { ABTestingPage } from '../pages/ABTestingPage';
 import { AddRemoveElementsPage } from '../pages/AddRemoveElementsPage';
 import { BasicAuthPage } from '../pages/BasicAuthPage';
 import { BrokenImagesPage } from '../pages/BrokenImagesPage';
-import { CheckboxesPage } from '../pages/CheckboxesPage';
+import { CheckboxesPage } from '../pages/CheckBoxesPage';
 
 Given('I am on the home page', async function (this: CustomWorld) {
   const home = new HomePage(this.page);
   await home.navigate();
-});
+}); 
 
 When(/^I click the A\/B Testing link$/, async function (this: CustomWorld) {
   const home = new HomePage(this.page);
