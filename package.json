@@ -1,17 +1,16 @@
-
 {
   "name": "playwright-cucumber-suite",
   "version": "1.0.0",
-  "scripts": {
+ "scripts": {
   "test": "cucumber-js",
   "test:smoke": "cucumber-js --tags \"@smoke\"",
-  "test:regression": "cucumber-js --tags \"@regression\"",
-  "test:ui": "cucumber-js --tags \"@ui\""
+  "report": "node scripts/generate-report.js",
+  "test:report": "cucumber-js && node scripts/generate-report.js"
 },
-
   "devDependencies": {
-    "@playwright/test": "^1.44.0",
     "@cucumber/cucumber": "^10.0.0",
+    "@playwright/test": "^1.44.0",
+    "multiple-cucumber-html-reporter": "^3.9.3",
     "playwright": "^1.44.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.0"

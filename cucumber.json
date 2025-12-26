@@ -3,6 +3,11 @@
   "default": {
     "require": ["src/steps/**/*.ts", "src/support/**/*.ts"],
     "requireModule": ["ts-node/register"],
-    "paths": ["features/**/*.feature"]
+    "paths": ["features/**/*.feature"],
+      "format": [
+      "progress",
+      "json:reports/cucumber-report.json",
+      "junit:reports/junit-report.xml"
+    ]
   }
 }
