@@ -8,30 +8,41 @@ export class ContextMenuPage {
     await hotSpot.waitFor({ state: 'visible' });
     await hotSpot.scrollIntoViewIfNeeded();
 
-    // Make sure the page is focused (helps headed runs)
+    // Helps in headed runs; safe to ignore failures
     await this.page.bringToFront().catch(() => {});
 
-    // Create a promise that resolves when the dialog appears
-    const dialogTextPromise = new Promise<string>((resolve, reject) => {
-      const timer = setTimeout(() => reject(new Error('Dialog did not appear in time')), 10_000);
+    const timeoutMs = 10_000;
 
-      this.page.once('dialog', async (dialog: Dialog) => {
+    const dialogTextPromise = new Promise<string>((resolve, reject) => {
+      let done = false;
+
+      const onDialog = async (dialog: Dialog) => {
+        if (done) return;
+        done = true;
+        clearTimeout(timer);
+
         try {
           const msg = dialog.message();
           await dialog.accept();
-          clearTimeout(timer);
           resolve(msg);
         } catch (e) {
-          clearTimeout(timer);
           reject(e);
         }
-      });
+      };
+
+      const timer = setTimeout(() => {
+        if (done) return;
+        done = true;
+        // Remove the handler so it can't fire later and surprise you
+        this.page.off('dialog', onDialog);
+        reject(new Error(`Dialog did not appear within ${timeoutMs}ms on ${this.page.url()}`));
+      }, timeoutMs);
+
+      this.page.once('dialog', onDialog);
     });
 
-    // Trigger the context menu (don’t auto-wait for “after” events)
     await hotSpot.click({ button: 'right', force: true, noWaitAfter: true });
 
-    // Wait for the dialog text (and accept already happened)
     return await dialogTextPromise;
   }
 }
