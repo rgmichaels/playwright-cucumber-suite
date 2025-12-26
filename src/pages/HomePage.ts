@@ -24,5 +24,8 @@ async clickCheckboxes() {
   await this.page.locator('a[href="/checkboxes"]').click();
 }
 
+async clickDisappearingElements() {
+  await this.page.locator('a[href="/disappearing_elements"]').click();
+}
 
 }

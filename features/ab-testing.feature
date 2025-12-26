@@ -41,4 +41,3 @@ Scenario: User views the Checkboxes page
     When I click the Context Menu link
     And I right click on the context menu box
     Then I should see a context menu alert
-
