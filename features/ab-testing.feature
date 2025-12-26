@@ -34,3 +34,11 @@ Scenario: User views the Checkboxes page
   Given I am on the home page
   When I click the Checkboxes link
   Then I should see 2 checkboxes on the page
+
+@smoke @ui
+  Scenario: User triggers context menu alert
+    Given I am on the home page
+    When I click the Context Menu link
+    And I right click on the context menu box
+    Then I should see a context menu alert
+
