@@ -20,4 +20,9 @@ async clickBrokenImages() {
   await this.page.locator('a[href="/broken_images"]').click();
 }
 
+async clickCheckboxes() {
+  await this.page.locator('a[href="/checkboxes"]').click();
+}
+
+
 }

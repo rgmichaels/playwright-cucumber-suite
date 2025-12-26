@@ -29,3 +29,8 @@ Scenario: Detect broken images on Broken Images page
   When I click the Broken Images link
   Then I should detect broken images
 
+@ui @smoke
+Scenario: User views the Checkboxes page
+  Given I am on the home page
+  When I click the Checkboxes link
+  Then I should see 2 checkboxes on the page

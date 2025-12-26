@@ -7,6 +7,7 @@ import { ABTestingPage } from '../pages/ABTestingPage';
 import { AddRemoveElementsPage } from '../pages/AddRemoveElementsPage';
 import { BasicAuthPage } from '../pages/BasicAuthPage';
 import { BrokenImagesPage } from '../pages/BrokenImagesPage';
+import { CheckboxesPage } from '../pages/CheckboxesPage';
 
 Given('I am on the home page', async function (this: CustomWorld) {
   const home = new HomePage(this.page);
@@ -92,3 +93,13 @@ Then(/^I should detect broken images$/, async function () {
   expect(broken.length).toBeGreaterThan(0);
 });
 
+When(/^I click the Checkboxes link$/, async function () {
+  const home = new HomePage(this.page);
+  await home.clickCheckboxes();
+});
+
+Then(/^I should see 2 checkboxes on the page$/, async function () {
+  const checkboxesPage = new CheckboxesPage(this.page);
+  const count = await checkboxesPage.getCheckboxCount();
+  expect(count).toBe(2);
+});
