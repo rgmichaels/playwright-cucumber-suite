@@ -32,5 +32,9 @@ async clickDragAndDrop() {
   await this.page.locator('a[href="/drag_and_drop"]').click();
 }
 
+async clickDropdown() {
+  await this.page.click('a[href="/dropdown"]');
+}
+
 
 }
