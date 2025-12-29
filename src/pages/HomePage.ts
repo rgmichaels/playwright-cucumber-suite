@@ -36,5 +36,9 @@ async clickDropdown() {
   await this.page.click('a[href="/dropdown"]');
 }
 
+async clickDynamicContent() {
+  await this.page.click('a[href="/dynamic_content"]');
+}
+
 
 }

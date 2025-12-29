@@ -17,7 +17,6 @@ When('I drag box A onto box B', async function () {
 
   // Save before-state so we can prove it swapped
   this.beforeHeaders = await dnd.getColumnHeaders();
-  console.log('🔍 BEFORE drag:', this.beforeHeaders);
 
   await dnd.dragAontoB();
 
@@ -26,15 +25,12 @@ When('I drag box A onto box B', async function () {
 
   // Save after-state
   this.afterHeaders = await dnd.getColumnHeaders();
-  console.log('🔍 AFTER drag:', this.afterHeaders);
 });
 
 Then('box A and box B should swap positions', async function () {
   expect(this.beforeHeaders).toBeDefined();
   expect(this.afterHeaders).toBeDefined();
 
-  console.log('✅ ASSERT before:', this.beforeHeaders);
-  console.log('✅ ASSERT after:', this.afterHeaders);
 
   // Initially: column-a header is "A", column-b header is "B"
   expect(this.beforeHeaders.a).toBe('A');

@@ -26,6 +26,5 @@ Then('option 1 should be selected', async function () {
   const dropdown = new DropdownPage(this.page);
   const selected = await dropdown.getSelectedValue();
 
-  console.log('🔽 Selected dropdown value:', selected);
   expect(selected).toBe('1');
 });
