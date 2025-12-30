@@ -44,4 +44,8 @@ async clickEntryAd() {
   await this.page.click('a[href="/entry_ad"]');
 }
 
+async clickKeyPresses(): Promise<void> {
+  await this.page.click('a[href="/key_presses"]');
+}
+
 }
