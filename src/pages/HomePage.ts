@@ -40,5 +40,8 @@ async clickDynamicContent() {
   await this.page.click('a[href="/dynamic_content"]');
 }
 
+async clickEntryAd() {
+  await this.page.click('a[href="/entry_ad"]');
+}
 
 }
